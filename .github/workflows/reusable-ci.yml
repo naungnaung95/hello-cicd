@@ -51,6 +51,10 @@ jobs:
 
       - name: Show artifact files
         run: ls -la dist
+      - name: Show secret length (safe)
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}
+        run: echo "Secret length is ${#DEPLOY_TOKEN}"
 
       - name: Run tests
         run: npm test
