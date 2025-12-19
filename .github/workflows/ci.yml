@@ -3,19 +3,7 @@ name: CI
 on:
   push:
     branches: [ main ]
-    paths:
-      - "index.js"
-      - "test.js"
-      - "package.json"
-      - ".github/workflows/**"
-
   pull_request:
-    paths:
-      - "index.js"
-      - "test.js"
-      - "package.json"
-      - ".github/workflows/**"
-
   workflow_dispatch:
 
 jobs:
