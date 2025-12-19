@@ -58,3 +58,10 @@ jobs:
 
       - name: Run tests
         run: npm test
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Deploy (demo)
+        run: echo "Deploying safely..."
