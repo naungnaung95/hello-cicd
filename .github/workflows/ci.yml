@@ -7,31 +7,19 @@ on:
       - "index.js"
       - "test.js"
       - "package.json"
-      - ".github/workflows/ci.yml"
+      - ".github/workflows/**"
 
   pull_request:
     paths:
       - "index.js"
       - "test.js"
       - "package.json"
-      - ".github/workflows/ci.yml"
+      - ".github/workflows/**"
 
   workflow_dispatch:
 
 jobs:
-  test:
-    # Example condition: don't run if the commit message contains [skip ci]
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
-
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Run tests
-        run: npm test
+  call-reusable:
+    uses: ./.github/workflows/reusable-ci.yml
+    with:
+      node-version: "20"
