@@ -1,4 +1,4 @@
-"scripts": {
+"scripts":  {
   "test": "node test.js",
   "build": "node build.js",
   "start": "node index.js"
