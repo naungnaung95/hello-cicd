@@ -1,24 +1,25 @@
-name: Reusable CI
+name: CI
 
 on:
-  workflow_call:
-    inputs:
-      node-version:
-        required: true
-        type: string
+  push:
+    branches: [ main ]
+    paths:
+      - "index.js"
+      - "test.js"
+      - "package.json"
+      - ".github/workflows/**"
 
-permissions:
-  contents: read
+  pull_request:
+    paths:
+      - "index.js"
+      - "test.js"
+      - "package.json"
+      - ".github/workflows/**"
+
+  workflow_dispatch:
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: ${{ inputs.node-version }}
-          cache: npm
-
-      - run: npm test
+  call-reusable:
+    uses: ./.github/workflows/reusable-ci.yml
+    with:
+      node-version: "20"
