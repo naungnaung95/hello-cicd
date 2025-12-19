@@ -1,6 +1,7 @@
 name: CI
 
 on:
+
   push:
     branches: [ main ]
   pull_request:
@@ -11,3 +12,5 @@ jobs:
     uses: ./.github/workflows/reusable-ci.yml
     with:
       node-version: "20"
+permissions:
+  contents: read
